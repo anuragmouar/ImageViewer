@@ -46,11 +46,15 @@ class Login extends Component {
             this.state.password === "" ? this.setState({ passwordRequired: "dispBlock" }) : this.setState({ passwordRequired: "dispNone" });
             this.setState({ incorrectUsernamePasswordMessage: "dispNone" });
         } else if (this.state.username === username && this.state.password === password) {
+            this.setState({ usernameRequired: "dispNone" })
+            this.setState({ passwordRequired: "dispNone" })
             sessionStorage.setItem("access-token", accessToken);
             this.setState({
                 isLoggedIn: true,
             });
         } else {
+            this.setState({ usernameRequired: "dispNone" })
+            this.setState({ passwordRequired: "dispNone" })
             this.setState({ incorrectUsernamePasswordMessage: "dispBlock" });
         }
     }
