@@ -238,112 +238,112 @@ class Profile extends Component {
         const { classes } = this.props;
         return (
             <div>
-                {
-                    this.state.username && this.state.imagesData ?
-                        <div className="top">
-                            <Header profile_picture={this.state.profilePicture} showSearchBox={false} showProfileIcon={this.state.isLoggedIn ? true : false} showMyAccount={false} />
-                            {this.state.isLoggedIn === true ?
-                                <div className="flex-container">
-                                    <div className="flex-container">
-                                        <div className="left">
-                                            <div className="profile-summary">
-                                                <img className="profile-image" src={this.state.profilePicture} alt={this.state.fullName} />
-                                            </div>
-                                        </div>
-                                        <div className="profile-summary-1">
-                                            <Typography variant="h5" component="h5">{this.state.username}</Typography><br />
-                                            <Typography>
-                                                <span> Posts: {this.state.noOfPosts} </span>
-                                                <span className="spacing" > Follows: {this.state.follows} </span>
-                                                <span className="spacing"> Followed By: {this.state.followedBy} </span>
-                                            </Typography>
-                                            <Typography variant="h6" component="h6">
-                                                <div className="top-spacing">{this.state.fullname}
-                                                    <Fab color="secondary" aria-label="edit" className={classes.fab} >
-                                                        <EditIcon onClick={this.openModalHandler} />
-                                                    </Fab>
-                                                </div>
-                                            </Typography>
-                                            <Modal ariaHideApp={false} isOpen={this.state.modalIsOpen} contentLabel="Label" onRequestClose={this.closeModalHandler} style={customStyles}>
-                                                <h2>Edit</h2><br />
-                                                <TabContainer>
-                                                    <FormControl required>
-                                                        <InputLabel htmlFor="fullname">Full Name</InputLabel>
-                                                        <Input id="fullname" type="text" fullname={this.state.fullname} onChange={this.editFullNameHandler} />
-                                                        <FormHelperText className={this.state.fullNameRequired}><span className="red">required</span></FormHelperText>
-                                                    </FormControl><br /><br />
-                                                </TabContainer><br />
-                                                <Button variant="contained" color="primary" onClick={this.updateFullNameHandler}>UPDATE</Button>
-                                            </Modal>
-                                        </div>
-                                    </div><br />
-                                    <div className="bottom image-margins">
-                                        <GridList cellHeight={350} cols={3} className={classes.gridListMain}>
-                                            {
-                                                this.state.imagesData.map(image => (
-                                                    <GridListTile onClick={() => this.imageClickHandler(image)} className="image-grid-item" key={"grid" + image.id}>
-                                                        <img src={image["images"]["standard_resolution"]["url"]} alt={image.id} />
-                                                    </GridListTile>
-                                                ))}
-                                        </GridList>
-                                        <Modal isOpen={this.state.imageModalIsOpen} ariaHideApp={false} contentLabel="Label1" className="image-modal" onRequestClose={this.closeImageModalHandler} >
-                                            <div className={classes.modalStyle}>
-                                                <div className="modal-left">
-                                                    <img className="clicked-image" src={this.state.currImage} alt={this.state.curImgName} />
-                                                </div>
-                                                <div className="modal-right">
-                                                    <div className="right-top">
-                                                        <img className="modal-profile-icon" src={this.state.currProfilePicture} alt={this.state.fullname} />
-                                                        <span className="modal-username">{this.state.username}</span>
-                                                        <hr />
-                                                    </div>
-                                                    <div className="right-middle">
-                                                        <div >{this.state.currCaption}</div>
-                                                        <div className="image-hashtags">{this.state.currTags}</div>
-                                                        <div className="comments-block">
-                                                            {
-                                                                this.state.comments.map(comment => (
-                                                                    this.state.currId === comment.imageId ?
-                                                                        <div className="comment-display" key={comment.id}>
-                                                                            <Typography variant="subtitle2" className={classes.commentUsername} gutterbottom="true" >
-                                                                                {comment.username}:
-                                                                            </Typography>
-                                                                            <Typography variant="body1" className="comment-text" gutterbottom="true">
-                                                                                {comment.text}
-                                                                            </Typography>
-                                                                        </div> : null
-                                                                ))
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                    <div className="right-botton">
-                                                        <IconButton className="like-button" aria-label="like-button" onClick={() => this.likeBtnHandler(this.state.currId)}>
-                                                            {this.state.currLikeStatus ? <FavoriteIcon className="image-liked-icon" fontSize="large" /> : <FavoriteBorderIcon className="image-like-icon" fontSize="large" />}
-                                                        </IconButton>
-                                                        {this.state.likeCounts === 1 ?
-                                                            <span>
-                                                                {this.state.likeCounts} like
-                                                            </span>
-                                                            : <span>
-                                                                {this.state.likeCounts} likes
-                                                              </span>
-                                                        }
-                                                        <FormControl className={classes.comment} fullWidth={true}>
-                                                            <InputLabel htmlFor="comment" >Add a comment</InputLabel>
-                                                            <Input id="comment" className="comment-text" name="commentText" onChange={(event) => this.onCommentTextChangeHandler(event, this.state.currId)} value={this.state.currId === this.state.commentText.id ? this.state.commentText.text : ""} />
-                                                            <Button variant="contained" color="primary" className={classes.addCommentBtn} onClick={() => this.onClickAddBtn(this.state.currId)}>
-                                                                ADD
-                                                            </Button>
-                                                        </FormControl>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Modal>
+
+                <div className="top">
+                    <Header profile_picture={this.state.profilePicture} showSearchBox={false} showProfileIcon={this.state.isLoggedIn ? true : false} showMyAccount={false} />
+                    {this.state.isLoggedIn === true ?
+                        <div className="flex-container">
+                            <div className="flex-container">
+                                <div className="left">
+                                    <div className="profile-summary">
+                                        <img className="profile-image" src={this.state.profilePicture} alt={this.state.fullName} />
                                     </div>
-                                </div> : <Redirect to="/" />
+                                </div>
+                                <div className="profile-summary-1">
+                                    <Typography variant="h5" component="h5">{this.state.username}</Typography><br />
+                                    <Typography>
+                                        <span> Posts: {this.state.noOfPosts} </span>
+                                        <span className="spacing" > Follows: {this.state.follows} </span>
+                                        <span className="spacing"> Followed By: {this.state.followedBy} </span>
+                                    </Typography>
+                                    <Typography variant="h6" component="h6">
+                                        <div className="top-spacing">{this.state.fullname}
+                                            <Fab color="secondary" aria-label="edit" className={classes.fab} >
+                                                <EditIcon onClick={this.openModalHandler} />
+                                            </Fab>
+                                        </div>
+                                    </Typography>
+                                    <Modal ariaHideApp={false} isOpen={this.state.modalIsOpen} contentLabel="Label" onRequestClose={this.closeModalHandler} style={customStyles}>
+                                        <h2>Edit</h2><br />
+                                        <TabContainer>
+                                            <FormControl required>
+                                                <InputLabel htmlFor="fullname">Full Name</InputLabel>
+                                                <Input id="fullname" type="text" fullname={this.state.fullname} onChange={this.editFullNameHandler} />
+                                                <FormHelperText className={this.state.fullNameRequired}><span className="red">required</span></FormHelperText>
+                                            </FormControl><br /><br />
+                                        </TabContainer><br />
+                                        <Button variant="contained" color="primary" onClick={this.updateFullNameHandler}>UPDATE</Button>
+                                    </Modal>
+                                </div>
+                            </div><br />
+                            {this.state.username && this.state.imagesData ?
+                                <div className="bottom image-margins">
+                                    <GridList cellHeight={350} cols={3} className={classes.gridListMain}>
+                                        {
+                                            this.state.imagesData.map(image => (
+                                                <GridListTile onClick={() => this.imageClickHandler(image)} className="image-grid-item" key={"grid" + image.id}>
+                                                    <img src={image["images"]["standard_resolution"]["url"]} alt={image.id} />
+                                                </GridListTile>
+                                            ))}
+                                    </GridList>
+                                    <Modal isOpen={this.state.imageModalIsOpen} ariaHideApp={false} contentLabel="Label1" className="image-modal" onRequestClose={this.closeImageModalHandler} >
+                                        <div className={classes.modalStyle}>
+                                            <div className="modal-left">
+                                                <img className="clicked-image" src={this.state.currImage} alt={this.state.curImgName} />
+                                            </div>
+                                            <div className="modal-right">
+                                                <div className="right-top">
+                                                    <img className="modal-profile-icon" src={this.state.currProfilePicture} alt={this.state.fullname} />
+                                                    <span className="modal-username">{this.state.username}</span>
+                                                    <hr />
+                                                </div>
+                                                <div className="right-middle">
+                                                    <div >{this.state.currCaption}</div>
+                                                    <div className="image-hashtags">{this.state.currTags}</div>
+                                                    <div className="comments-block">
+                                                        {
+                                                            this.state.comments.map(comment => (
+                                                                this.state.currId === comment.imageId ?
+                                                                    <div className="comment-display" key={comment.id}>
+                                                                        <Typography variant="subtitle2" className={classes.commentUsername} gutterbottom="true" >
+                                                                            {comment.username}:
+                                                                            </Typography>
+                                                                        <Typography variant="body1" className="comment-text" gutterbottom="true">
+                                                                            {comment.text}
+                                                                        </Typography>
+                                                                    </div> : null
+                                                            ))
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div className="right-botton">
+                                                    <IconButton className="like-button" aria-label="like-button" onClick={() => this.likeBtnHandler(this.state.currId)}>
+                                                        {this.state.currLikeStatus ? <FavoriteIcon className="image-liked-icon" fontSize="large" /> : <FavoriteBorderIcon className="image-like-icon" fontSize="large" />}
+                                                    </IconButton>
+                                                    {this.state.likeCounts === 1 ?
+                                                        <span>
+                                                            {this.state.likeCounts} like
+                                                            </span>
+                                                        : <span>
+                                                            {this.state.likeCounts} likes
+                                                              </span>
+                                                    }
+                                                    <FormControl className={classes.comment} fullWidth={true}>
+                                                        <InputLabel htmlFor="comment" >Add a comment</InputLabel>
+                                                        <Input id="comment" className="comment-text" name="commentText" onChange={(event) => this.onCommentTextChangeHandler(event, this.state.currId)} value={this.state.currId === this.state.commentText.id ? this.state.commentText.text : ""} />
+                                                        <Button variant="contained" color="primary" className={classes.addCommentBtn} onClick={() => this.onClickAddBtn(this.state.currId)}>
+                                                            ADD
+                                                            </Button>
+                                                    </FormControl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Modal>
+                                </div> : null
                             }
-                        </div> : null
-                }
+                        </div> : <Redirect to="/" />
+                    }
+                </div>
             </div>
         )
     }

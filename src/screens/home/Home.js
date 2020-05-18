@@ -273,8 +273,8 @@ class Home extends Component {
                                                     : ""
                                             ))}
                                             <FormControl className={classes.comment} fullWidth={true}>
-                                                <InputLabel htmlFor="comment" >Add a comment</InputLabel>
-                                                <Input id="comment" className="comment-text" name="commentText" onChange={(event) => this.commentChangeHandler(event, image.id)} value={image.id === this.state.commentText.id ? this.state.commentText.text : ""} />
+                                                <InputLabel htmlFor={image.id} >Add a comment</InputLabel>
+                                                <Input id={image.id} className="comment-text" name="commentText" onChange={(event) => this.commentChangeHandler(event, image.id)} value={image.id === this.state.commentText.id ? this.state.commentText.text : ""} />
                                                 <Button variant="contained" color="primary" className={classes.addCommentBtn} onClick={() => this.onClickAddBtn(image.id)}>
                                                     ADD
                                             </Button>
@@ -285,7 +285,7 @@ class Home extends Component {
                             ))}
                         </Grid>
                     </div>
-                    : <Redirect to="/" /> // If the user is not logged in then redirecting to login page
+                    : <Redirect to="/" />
                 }
             </div>
         )
